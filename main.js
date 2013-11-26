@@ -27,7 +27,7 @@
 			return Math.floor(100 * (wins / (wins + losses)));
 		};
 		
-		var tries = 20;
+		var tries = 10;
 
 		this.getTries = function(){
 			return tries;
@@ -45,7 +45,7 @@
 			if (typeof guess !== "object" || guess.length !== 4) return "Your guess was not a 4-digit array!";
 			if (this.getTries() == 0) {
 				code = self.generate();
-				tries = 20;
+				tries = 10;
 				losses++;
 				return "You're out of tries! The code has been reset.\nYour record is " + wins + " wins and " + losses + " losses for a percentage of " + self.getPercentage() + "%.";			
 			}
@@ -73,7 +73,7 @@
 				console.log("You've won! The code was " + code + ". The code has been reset.\nYour record is " + wins + " wins and " + losses + " losses for a percentage of " + self.getPercentage() + "%.");			
 				console.log("Feel free to play again!");
 				code = self.generate();
-				tries = 20;
+				tries = 10;
 				return;
 			} else {
 				console.log("Numbers right: " + num);

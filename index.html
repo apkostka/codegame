@@ -7,5 +7,55 @@
 
 	<body>
 
+    <div id="history"></div>
+    <form id="guess">
+      <input type="number" length="1" name="guess" value="1"/>
+      <input type="number" length="1" name="guess" value="1"/>
+      <input type="number" length="1" name="guess" value="1"/>
+      <input type="number" length="1" name="guess" value="1"/>
+      <input type="submit"/>
+    </form>
+
+    <button id="reset">Reset</button>
+
+    <script type="text/javascript">
+      window.onload = function(){
+        var game = window.game;
+
+        function addEvent(el, eventType, handler) {
+          if (el.addEventListener) { // DOM Level 2 browsers
+            el.addEventListener(eventType, handler, false);
+          } else if (el.attachEvent) { // IE <= 8
+            el.attachEvent('on' + eventType, handler);
+          } else { // ancient browsers
+            el['on' + eventType] = handler;
+          }
+        }
+
+        var form = document.getElementById("guess");
+        var history = document.getElementById("history");
+        addEvent(form, 'submit', function(e){
+          e.preventDefault();
+          var guesses = document.getElementsByName("guess");
+          var guess = [];
+          console.log(guesses);
+          for (var x in guesses){
+            if (guess.length >= 4) break;
+            guess.push(parseInt(guesses[x].value,10));
+          };
+          var p = document.createElement('p');
+          history.appendChild(p);
+          p.innerHTML = game.guess(guess);
+        });
+
+        addEvent(document.getElementById("reset"), "click", function() {
+          game.reset();
+          var p = document.createElement('p');
+          history.appendChild(p);
+          p.innerHTML = "Game Reset! Tries: 10";
+        });
+
+      };
+    </script>
 	</body>
 </html>

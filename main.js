@@ -1,15 +1,14 @@
-"use strict";
-
 /*
  * A game.
  * Author: Andrew Kostka (apkostka.com)
  */
 
-(function(window, undefned){
+;(function(window, undefined){
+	"use strict";
 
 	function Game() {
 
-		this.generate = function(){
+		var generate = function(){
 			var self = this;
 
 			var code = [];
@@ -33,19 +32,18 @@
 			return tries;
 		};
 
-		this.decrementTries = function(){
+		var decrementTries = function(){
 			tries--;
 		};
 
-		var code = this.generate();
+		var code = generate();
 
 		this.guess = function(guess){
 			var self = this;
 
 			if (typeof guess !== "object" || guess.length !== 4) return "Your guess was not a 4-digit array!";
 			if (this.getTries() == 0) {
-				code = self.generate();
-				tries = 10;
+				this.reset();
 				losses++;
 				return "You're out of tries! The code has been reset.\nYour record is " + wins + " wins and " + losses + " losses for a percentage of " + self.getPercentage() + "%.";			
 			}
@@ -72,17 +70,25 @@
 				wins++;
 				console.log("You've won! The code was " + code + ". The code has been reset.\nYour record is " + wins + " wins and " + losses + " losses for a percentage of " + self.getPercentage() + "%.");			
 				console.log("Feel free to play again!");
-				code = self.generate();
-				tries = 10;
-				return;
+				this.reset();
+				return "You've won! The code was " + code + ". The code has been reset.\nYour record is " + wins + " wins and " + losses + " losses for a percentage of " + self.getPercentage() + "%.";
 			} else {
 				console.log("Numbers right: " + num);
 				console.log("Places right: " + place);
-				self.decrementTries();
+				decrementTries();
 				console.log("Tries left: " + self.getTries());
-				return;
+				var response = guess.join(' ') + "&nbsp;&nbsp;&nbsp;&nbsp;Numbers right: " + num + ", Places right: " + place + ", Tries: " + self.getTries();
+				return response;
 			}
 		};
+
+		this.reset = function() {
+			code = generate();
+			tries = 10;
+		}
+
+		// Game Behavior
+
 	};
 
 	var game = new Game();

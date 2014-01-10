@@ -68,10 +68,11 @@
 
 			if (place == 4) {
 				wins++;
-				console.log("You've won! The code was " + code + ". The code has been reset.\nYour record is " + wins + " wins and " + losses + " losses for a percentage of " + self.getPercentage() + "%.");			
+				var response = "You've won! The code was " + code + ". The code has been reset.\nYour record is " + wins + " wins and " + losses + " losses for a percentage of " + self.getPercentage() + "%.";
+				console.log(response);			
 				console.log("Feel free to play again!");
 				this.reset();
-				return "You've won! The code was " + code + ". The code has been reset.\nYour record is " + wins + " wins and " + losses + " losses for a percentage of " + self.getPercentage() + "%.";
+				return response;
 			} else {
 				console.log("Numbers right: " + num);
 				console.log("Places right: " + place);

@@ -12,7 +12,7 @@
 			var self = this;
 
 			var code = [];
-			
+
 			for (var i = 1; i < 5; i++) {
 				code.push(Math.floor(Math.random() * 4) + 1);
 			}
@@ -25,7 +25,7 @@
 		this.getPercentage = function(){
 			return Math.floor(100 * (wins / (wins + losses)));
 		};
-		
+
 		var tries = 10;
 
 		this.getTries = function(){
@@ -45,7 +45,7 @@
 			if (this.getTries() == 0) {
 				this.reset();
 				losses++;
-				return "You're out of tries! The code has been reset.\nYour record is " + wins + " wins and " + losses + " losses for a percentage of " + self.getPercentage() + "%.";			
+				return "You're out of tries! The code has been reset.\nYour record is " + wins + " wins and " + losses + " losses for a percentage of " + self.getPercentage() + "%.";
 			}
 
 			var num = 0;
@@ -69,7 +69,7 @@
 			if (place == 4) {
 				wins++;
 				var response = "You've won! The code was " + code + ". The code has been reset.\nYour record is " + wins + " wins and " + losses + " losses for a percentage of " + self.getPercentage() + "%.";
-				console.log(response);			
+				console.log(response);
 				console.log("Feel free to play again!");
 				this.reset();
 				return response;
@@ -87,8 +87,6 @@
 			code = generate();
 			tries = 10;
 		}
-
-		// Game Behavior
 
 	};
 
